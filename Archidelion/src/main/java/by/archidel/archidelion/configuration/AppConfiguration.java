@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.archidel.archidelion")
-public final class AppConfiguration {
+public class AppConfiguration {
 
 	@Bean
 	public ViewResolver viewResolver() {
