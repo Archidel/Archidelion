@@ -2,6 +2,7 @@ package by.archidel.archidelion.configuration;
 
 import java.util.Properties;
 
+import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -11,13 +12,17 @@ import org.springframework.core.env.Environment;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import by.archidel.archidelion.bean.Account;
+import by.archidel.archidelion.bean.User;
+
 import static org.hibernate.cfg.Environment.*;
 
 @Configuration
 @EnableTransactionManagement
 @PropertySource("classpath:hibernate.properties")
 @ComponentScan({ "by.archidel.archidelion.bean" })
-public final class DBConfiguration {
+public class DBConfiguration {
 
 	@Autowired
 	private Environment env;
@@ -45,19 +50,26 @@ public final class DBConfiguration {
 		props.put(C3P0_MAX_STATEMENTS, env.getProperty(PropertyConst.C3P0_MAX_STATEMENTS));
 
 		factoryBean.setHibernateProperties(props);
-		// factoryBean.setAnnotatedClasses(User.class);
-		// factoryBean.setAnnotatedClasses(UserRole.class);
+		factoryBean.setAnnotatedClasses(User.class);
 		// factoryBean.setAnnotatedClasses(Person.class);
 		// factoryBean.setAnnotatedClasses(PersonLocation.class);
 		factoryBean.setPackagesToScan(new String[] { "com.archidel.universe.bean" });
 		return factoryBean;
 	}
 
-	@Bean
-	public HibernateTransactionManager getTransactionManager() {
-		HibernateTransactionManager transactionManager = new HibernateTransactionManager();
-		transactionManager.setSessionFactory(getSessionFactory().getObject());
-		return transactionManager;
-	}
+	/*
+	 * @Bean public HibernateTransactionManager getTransactionManager() {
+	 * HibernateTransactionManager transactionManager = new
+	 * HibernateTransactionManager();
+	 * transactionManager.setSessionFactory(getSessionFactory().getObject()); return
+	 * transactionManager; }
+	 */
 
+	@Bean
+	@Autowired
+	public HibernateTransactionManager transactionManager(SessionFactory s) {
+		HibernateTransactionManager txManager = new HibernateTransactionManager();
+		txManager.setSessionFactory(s);
+		return txManager;
+	}
 }

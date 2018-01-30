@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.archidel.archidelion")
+@ComponentScan(basePackages = "by.archidel.archidelion")
 public class AppConfiguration {
 
 	@Bean
