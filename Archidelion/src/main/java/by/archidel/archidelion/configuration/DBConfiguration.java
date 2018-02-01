@@ -13,6 +13,7 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import by.archidel.archidelion.bean.Character;
 import by.archidel.archidelion.bean.User;
 
 import static org.hibernate.cfg.Environment.*;
