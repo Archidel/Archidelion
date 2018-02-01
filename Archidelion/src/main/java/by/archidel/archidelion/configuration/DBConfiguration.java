@@ -13,7 +13,6 @@ import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import by.archidel.archidelion.bean.Account;
 import by.archidel.archidelion.bean.User;
 
 import static org.hibernate.cfg.Environment.*;
@@ -51,9 +50,7 @@ public class DBConfiguration {
 
 		factoryBean.setHibernateProperties(props);
 		factoryBean.setAnnotatedClasses(User.class);
-		// factoryBean.setAnnotatedClasses(Person.class);
-		// factoryBean.setAnnotatedClasses(PersonLocation.class);
-		factoryBean.setPackagesToScan(new String[] { "com.archidel.universe.bean" });
+		factoryBean.setPackagesToScan(new String[] { "by.archidel.archidelion.bean" });
 		return factoryBean;
 	}
 

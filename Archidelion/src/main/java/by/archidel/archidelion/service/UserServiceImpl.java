@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import by.archidel.archidelion.bean.Account;
 import by.archidel.archidelion.bean.User;
 import by.archidel.archidelion.dao.UserDao;
+import by.archidel.archidelion.dao.exception.DaoException;
 import by.archidel.archidelion.service.exception.ServiceException;
 import by.archidel.archidelion.service.exception.ValidationServiceException;
 import by.archidel.archidelion.service.validation.UserValidationData;
@@ -21,8 +22,15 @@ public class UserServiceImpl implements UserService {
 		if (!UserValidationData.validAccount(account)) {
 			throw new ServiceException("Invalid input data");
 		}
+		User user = null;
 
-		return userDao.getUserByAccount(account);
+		try {
+			user = userDao.getUserByAccount(account);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+
+		return user;
 	}
 
 }

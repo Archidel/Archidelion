@@ -4,6 +4,8 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
@@ -11,9 +13,8 @@ import javax.persistence.Table;
 public class User implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-/*	private boolean errorStatus;
-	private String errorMessage;
-*/
+	@Id
+	@GeneratedValue()
 	@Column(name = "u_id")
 	private int id;
 
@@ -23,10 +24,14 @@ public class User implements Serializable {
 	@Column(name = "u_password")
 	private String password;
 
+	private boolean errorStatus;
+
+	private String errorMessage;
+
 	public User() {
 	}
 
-	/*public User(boolean errorStatus, String errorMessage) {
+	public User(boolean errorStatus, String errorMessage) {
 		this.errorStatus = errorStatus;
 		this.errorMessage = errorMessage;
 	}
@@ -41,11 +46,11 @@ public class User implements Serializable {
 
 	public String getErrorMessage() {
 		return errorMessage;
-	}*/
+	}
 
-/*	public void setErrorMessage(String errorMessage) {
+	public void setErrorMessage(String errorMessage) {
 		this.errorMessage = errorMessage;
-	}*/
+	}
 
 	public int getId() {
 		return id;
@@ -69,6 +74,12 @@ public class User implements Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	@Override
+	public String toString() {
+		return "User [errorStatus=" + errorStatus + ", errorMessage=" + errorMessage + ", id=" + id + ", login=" + login
+				+ ", password=" + password + "]";
 	}
 
 }
