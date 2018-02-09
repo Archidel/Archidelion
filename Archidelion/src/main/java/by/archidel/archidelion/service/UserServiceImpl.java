@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import by.archidel.archidelion.bean.Account;
+import by.archidel.archidelion.bean.AccountRegister;
 import by.archidel.archidelion.bean.User;
 import by.archidel.archidelion.dao.UserDao;
 import by.archidel.archidelion.dao.exception.DaoException;
@@ -31,6 +32,23 @@ public class UserServiceImpl implements UserService {
 		}
 
 		return user;
+	}
+
+	@Override
+	public User register(AccountRegister register) throws ServiceException, ValidationServiceException {
+		if (!UserValidationData.validAccount(register)) {
+			throw new ServiceException("Invalid register data");
+		}
+		User user = null;
+
+		try {
+			user = userDao.register(register);
+		} catch (DaoException e) {
+			throw new ServiceException(e);
+		}
+
+		return user;
+
 	}
 
 }

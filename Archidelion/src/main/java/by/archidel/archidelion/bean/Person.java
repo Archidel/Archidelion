@@ -4,40 +4,34 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-/*@Entity
-@Table(name = "character")*/
-public class Character implements Serializable {
+@Entity
+@Table(name = "person")
+public class Person implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-	/*
-	 * @Id
-	 * 
-	 * @GeneratedValue()
-	 * 
-	 * @Column(name = "ch_id")
-	 */
+	@Id
+	@GeneratedValue()
+	@Column(name = "p_id")
 	private int id;
 
-	/* @Column(name = "ch_name") */
+	@Column(name = "p_name")
 	private String name;
 
-	/*
-	 * @ManyToOne
-	 * 
-	 * @JoinColumn(name="u_id") private User user;
-	 */
+	@ManyToOne()
+	@JoinColumn(name = "u_id")
+	private User user;
 
-	public Character() {
+	public Person() {
 	}
 
-	public Character(int id, String name) {
-		super();
+	public Person(int id, String name) {
 		this.id = id;
 		this.name = name;
 	}
