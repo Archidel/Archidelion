@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import by.archidel.archidelion.bean.Account;
-import by.archidel.archidelion.bean.AccountRegister;
 import by.archidel.archidelion.bean.User;
 import by.archidel.archidelion.dao.UserDao;
 import by.archidel.archidelion.dao.exception.DaoException;
@@ -32,7 +31,7 @@ public class UserDaoImpl implements UserDao {
 			user = (User) session.createQuery("FROM User u WHERE u.login = :login AND u.password = :password")
 					.setParameter("login", account.getLogin()).setParameter("password", account.getPassword())
 					.getSingleResult();
-
+			transaction.commit();
 		} catch (HibernateException e1) {
 			if (transaction != null) {
 				transaction.rollback();
@@ -56,6 +55,7 @@ public class UserDaoImpl implements UserDao {
 			transaction = session.beginTransaction();
 			int userId = (int) session.save(user);
 			user = session.get(User.class, userId);
+			transaction.commit();
 		} catch (HibernateException e1) {
 			if (transaction != null) {
 				transaction.rollback();

@@ -49,16 +49,6 @@ public class GameController {
 			logger.error(account.toString(), e);
 		}
 
-		System.out.println(user.toString());
-
-		ArrayList<Person> list = new ArrayList<Person>();
-		list.add(new Person(1, "MyCharacter", "Human", "Male"));
-		list.add(new Person(2, "SecondCharacter", "Human", "Male"));
-		list.add(new Person(3, "thridCHaracter", "Human", "Female"));
-		list.add(new Person(4, "fouthCharacter", "Human", "Female"));
-		user.setPerson(list);;
-		System.out.println(user.toString());
-		
 		return user;
 	}
 
@@ -68,7 +58,6 @@ public class GameController {
 
 		try {
 			user = userService.register(register);
-
 			logger.info(user.toString() + " has been registrated and verificated");
 		} catch (ValidationServiceException e) {
 			user = new User(true, getMessageFromExceptionMessage(e.getMessage()));
@@ -77,8 +66,6 @@ public class GameController {
 			user = new User(true, getMessageFromExceptionMessage(e.getMessage()));
 			logger.error(register.toString(), e);
 		}
-
-		System.out.println(user.toString());
 
 		return user;
 	}

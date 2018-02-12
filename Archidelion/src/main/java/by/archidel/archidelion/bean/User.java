@@ -30,7 +30,7 @@ public class User implements Serializable {
 	@Column(name = "u_email")
 	private String email;
 
-	@OneToMany(fetch = FetchType.EAGER, targetEntity = Person.class)
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
 	private List<Person> person;
 
 	@Transient
