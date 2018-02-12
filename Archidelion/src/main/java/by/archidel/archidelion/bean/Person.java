@@ -9,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "person")
@@ -27,8 +28,10 @@ public class Person implements Serializable {
 	@JoinColumn(name = "u_id")
 	private User user;
 
+	@Transient
 	private String race;
 
+	@Transient
 	private String sex;
 
 	public String getSex() {

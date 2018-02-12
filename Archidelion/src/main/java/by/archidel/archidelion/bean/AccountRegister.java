@@ -4,19 +4,19 @@ import java.io.Serializable;
 
 public class AccountRegister implements Serializable {
 	private static final long serialVersionUID = 1L;
-	private String name;
+	private String login;
 	private String email;
 	private String password;
 
 	public AccountRegister() {
 	}
 
-	public String getName() {
-		return name;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setLogin(String login) {
+		this.login = login;
 	}
 
 	public String getEmail() {
@@ -40,7 +40,7 @@ public class AccountRegister implements Serializable {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((email == null) ? 0 : email.hashCode());
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((login == null) ? 0 : login.hashCode());
 		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		return result;
 	}
@@ -59,10 +59,10 @@ public class AccountRegister implements Serializable {
 				return false;
 		} else if (!email.equals(other.email))
 			return false;
-		if (name == null) {
-			if (other.name != null)
+		if (login == null) {
+			if (other.login != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!login.equals(other.login))
 			return false;
 		if (password == null) {
 			if (other.password != null)
@@ -74,7 +74,7 @@ public class AccountRegister implements Serializable {
 
 	@Override
 	public String toString() {
-		return "AccountRegister [name=" + name + ", email=" + email + ", password=" + password + "]";
+		return "AccountRegister [login=" + login + ", email=" + email + ", password=" + password + "]";
 	}
 
 }

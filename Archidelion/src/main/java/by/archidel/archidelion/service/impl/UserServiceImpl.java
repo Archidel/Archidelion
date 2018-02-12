@@ -40,10 +40,13 @@ public class UserServiceImpl implements UserService {
 		if (!UserValidationData.validAccount(register)) {
 			throw new ServiceException("Invalid register data");
 		}
-		User user = null;
+		User user = new User();
+		user.setLogin(register.getLogin());
+		user.setEmail(register.getEmail());
+		user.setPassword(register.getPassword());
 
 		try {
-			user = userDao.register(register);
+			user = userDao.register(user);
 		} catch (DaoException e) {
 			throw new ServiceException(e);
 		}

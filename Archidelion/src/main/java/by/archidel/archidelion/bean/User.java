@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "user")
@@ -32,8 +33,10 @@ public class User implements Serializable {
 	@OneToMany(fetch = FetchType.EAGER, targetEntity = Person.class)
 	private List<Person> person;
 
+	@Transient
 	private boolean errorStatus;
 
+	@Transient
 	private String errorMessage;
 
 	public User() {

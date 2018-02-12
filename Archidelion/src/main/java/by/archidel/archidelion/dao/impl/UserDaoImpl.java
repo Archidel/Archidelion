@@ -48,19 +48,14 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
-	public User register(AccountRegister register) throws DaoException {
+	public User register(User user) throws DaoException {
 		Session session = sessionFactory.openSession();
 		Transaction transaction = null;
-		User user = null;
 
 		try {
 			transaction = session.beginTransaction();
-			//TODO Implementation this method for register user
-			
-			//		user = (User) session.createQuery("FROM User u WHERE u.login = :login AND u.password = :password")
-	//				.setParameter("login", account.getLogin()).setParameter("password", account.getPassword())
-	//				.getSingleResult();
-
+			int userId = (int) session.save(user);
+			user = session.get(User.class, userId);
 		} catch (HibernateException e1) {
 			if (transaction != null) {
 				transaction.rollback();
