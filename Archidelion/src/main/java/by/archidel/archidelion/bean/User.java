@@ -30,7 +30,7 @@ public class User implements Serializable {
 	private String email;
 
 	@OneToMany(fetch = FetchType.EAGER, targetEntity = Person.class)
-	private List<Person> character;
+	private List<Person> person;
 
 	private boolean errorStatus;
 
@@ -92,18 +92,18 @@ public class User implements Serializable {
 		this.password = password;
 	}
 
-	public List<Person> getCharacter() {
-		return character;
+	public List<Person> getPerson() {
+		return person;
 	}
 
-	public void setCharacter(List<Person> character) {
-		this.character = character;
+	public void setPerson(List<Person> person) {
+		this.person = person;
 	}
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", character="
-				+ character + ", errorStatus=" + errorStatus + ", errorMessage=" + errorMessage + "]";
+		return "User [id=" + id + ", login=" + login + ", password=" + password + ", email=" + email + ", person="
+				+ person + ", errorStatus=" + errorStatus + ", errorMessage=" + errorMessage + "]";
 	}
 
 }

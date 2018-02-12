@@ -1,4 +1,4 @@
-package by.archidel.archidelion.service;
+package by.archidel.archidelion.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,6 +8,7 @@ import by.archidel.archidelion.bean.AccountRegister;
 import by.archidel.archidelion.bean.User;
 import by.archidel.archidelion.dao.UserDao;
 import by.archidel.archidelion.dao.exception.DaoException;
+import by.archidel.archidelion.service.UserService;
 import by.archidel.archidelion.service.exception.ServiceException;
 import by.archidel.archidelion.service.exception.ValidationServiceException;
 import by.archidel.archidelion.service.validation.UserValidationData;

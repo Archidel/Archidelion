@@ -4,7 +4,6 @@ import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -27,6 +26,41 @@ public class Person implements Serializable {
 	@ManyToOne()
 	@JoinColumn(name = "u_id")
 	private User user;
+
+	private String race;
+
+	private String sex;
+
+	public String getSex() {
+		return sex;
+	}
+
+	public void setSex(String sex) {
+		this.sex = sex;
+	}
+
+	public String getRace() {
+		return race;
+	}
+
+	public Person(int id, String name, String race) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.race = race;
+	}
+
+	public Person(int id, String name, String race, String sex) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.race = race;
+		this.sex = sex;
+	}
+
+	public void setRace(String race) {
+		this.race = race;
+	}
 
 	public Person() {
 	}
@@ -54,7 +88,7 @@ public class Person implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Character [id=" + id + ", name=" + name + "]";
+		return "Person [id=" + id + ", name=" + name + ", user=" + user + ", race=" + race + ", sex=" + sex + "]";
 	}
 
 }

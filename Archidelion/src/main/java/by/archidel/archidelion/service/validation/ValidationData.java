@@ -8,4 +8,7 @@ public final class ValidationData {
 		return true;
 	}
 
+	public static boolean validInteger(int number) {
+		return true;
+	}
 }
